@@ -59,6 +59,7 @@ namespace gr {
 	* Direct access to the estimate. Note: Estimate is a 2-dim array of size 2N x (2Np-1).
 	*/
 	  const std::vector<std::vector<float> > &get_estimate() { return d_calcspectrum->get_estimate(); };
+	  const std::vector<std::vector<float> > &get_average_estimate() { return d_calcspectrum->get_average_estimate(); };
     };
 
   } // namespace specest

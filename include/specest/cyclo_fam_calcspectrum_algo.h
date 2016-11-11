@@ -36,6 +36,17 @@ namespace gr {
 		~cyclo_fam_calcspectrum_algo();
 		void calc(const gr_complex *in);
 		const std::vector<std::vector<float> >  &get_outputs() { return d_result; };
+		const std::vector<std::vector<float> >  &get_average_outputs() 
+	       { 
+
+			for (int i=0;i<2*d_N;i++)
+			{
+			    for(int j=0;j<2*d_Np-1;j++)
+				d_average_result[i][j] /= d_num;
+			}
+
+			return d_average_result; 
+               };
 		float get_value(int row, int column){ return d_result[row][column]; };
 
 	 private:
@@ -43,11 +54,13 @@ namespace gr {
 		int d_P;
 		int d_L;
 		int d_N;
+	        int d_num;
 
 		float d_scale;
 
 		std::vector<std::vector<gr_complex> >  d_complex_demodulates;
 		std::vector<std::vector<float> >       d_result;
+		std::vector<std::vector<float> >       d_average_result;
 
 		std::vector<gr_complex>  d_fft_in_buffer;
 		fftwf_complex           *d_fft_in;

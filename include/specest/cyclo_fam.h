@@ -111,6 +111,7 @@ namespace gr {
 	* Direct access to the estimate. Note: Estimate is a 2-dim array of size 2N x (2Np-1).
 	*/
 	  virtual const std::vector<std::vector<float> > &get_estimate() = 0;
+	  virtual const std::vector<std::vector<float> > &get_average_estimate() = 0;
 	};
   } // namespace specest
 } // namespace gr

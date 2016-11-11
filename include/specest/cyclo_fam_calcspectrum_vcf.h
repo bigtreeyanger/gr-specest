@@ -53,6 +53,7 @@ namespace gr {
 	  virtual int get_P() = 0;
       virtual int get_L() = 0;
       virtual const std::vector<std::vector<float> > &get_estimate() = 0;
+      virtual const std::vector<std::vector<float> > &get_average_estimate() = 0;
     };
 
   } // namespace specest

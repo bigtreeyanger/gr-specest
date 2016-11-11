@@ -91,7 +91,7 @@ def setup_fam_matplotlib(Np, P, L, filename, sample_type, verbose,
     data = numpy.array(raw)
     image = plt.imshow(data,
                         interpolation='nearest',
-                        animated=True,
+                        animated=False,
                         extent=(-0.5, 0.5-1.0/Np, -1.0, 1.0-1.0/(P*L)))
     cbar = plt.colorbar(image)
     plt.xlabel('frequency / fs')

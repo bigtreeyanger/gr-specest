@@ -31,7 +31,9 @@ namespace gr {
 		d_P(P),
 		d_L(L),
 		d_N(P * L),
+		d_num(0),
 		d_result(2*d_N, std::vector<float>(2*d_Np-1,0)),
+		d_average_result(2*d_N, std::vector<float>(2*d_Np-1,0)),
 		d_complex_demodulates(P, std::vector<gr_complex>(Np,0)),
 		d_fft_in_buffer(P)
 
@@ -78,10 +80,12 @@ namespace gr {
 		// Top of the channel support region
 		for(int i = 0; i < d_N/d_Np; i++) {
 		    d_result[row+i][column]     = std::sqrt(d_fft_out[i][0]*d_fft_out[i][0]+d_fft_out[i][1]*d_fft_out[i][1]);
+		    d_average_result[row+i][column] += d_result[row+i][column];
 		}
 		// Bottom of the channel support region
 		for(int i = 1; i <= d_N/d_Np; i++) {
 		    d_result[row-i][column]     = std::sqrt(d_fft_out[d_P-i][0]*d_fft_out[d_P-i][0]+d_fft_out[d_P-i][1]*d_fft_out[d_P-i][1]);
+		    d_average_result[row-i][column] +=d_result[row-i][column];
 		}
 	}
 
@@ -135,6 +139,7 @@ namespace gr {
 		        fft(f_k, f_l);
 		    }
 		}
+		d_num+=1;
 	}
   } /* namespace specest */
 } /* namespace gr */

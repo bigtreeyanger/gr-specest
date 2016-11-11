@@ -55,6 +55,7 @@ namespace gr {
 	  int get_P(){ return d_P; };
       int get_L(){ return d_L; };
       const std::vector<std::vector<float> > &get_estimate(){return d_calcspectrum->get_outputs();};
+      const std::vector<std::vector<float> > &get_average_estimate(){return d_calcspectrum->get_average_outputs();}
     };
 
   } // namespace specest
